@@ -3,11 +3,11 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelfSelect from './BookShelf'
 import Book from './Book'
-
+//import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
 const debounce = (fn, delay) => {
     let timer = null;
-    return(...args)  => {
+    return (...args) => {
         timer && clearTimeout(timer);
         timer = setTimeout(() => {
             fn.apply(null, args)
@@ -29,8 +29,8 @@ class BooksApp extends React.Component {
     }
 
     searchBooks = async (query) => {
-            const filteredBooks = await BooksAPI.search(query)
-            this.setState({filteredBooks})
+        const filteredBooks = await BooksAPI.search(query)
+        this.setState({filteredBooks})
     }
 
     handleSearch = debounce(this.searchBooks, 500)
@@ -42,19 +42,19 @@ class BooksApp extends React.Component {
     }
 
     handleChange = (id, event) => {
-        console.log('id',id,'event',event.target.value)
+        console.log('id', id, 'event', event.target.value)
 
-            BooksAPI.update(id, event.target.value).then(
-           async (response) => {
+        BooksAPI.update(id, event.target.value).then(
+            async (response) => {
                 const books = await BooksAPI.getAll()
                 this.setState({books})
-                console.log(this.state.books)}
+                console.log(this.state.books)
+            }
         )
         console.log(this.state.response)
     }
 
     filterBooks = shelf => book => book.shelf === shelf;
-
 
 
     render() {
@@ -82,8 +82,9 @@ class BooksApp extends React.Component {
                   display the books
 
                 */}
-                                <input type="text" placeholder="Search by title or author" onChange={(event) => this.handleSearch(event.target.value)}/>
-                                
+                                <input type="text" placeholder="Search by title or author"
+                                       onChange={(event) => this.handleSearch(event.target.value)}/>
+
                             </div>
                         </div>
                         <div className="bookshelf-books">
@@ -93,8 +94,7 @@ class BooksApp extends React.Component {
                                     <>
 
                                         <li>
-                                            <Book book={book} />
-                                            <BookShelfSelect handleBookShelfSelect={(event) => this.handleChange(book.id, event)} />
+                                            <Book book={book}/>
                                         </li>
                                     </>
                                 )}
@@ -117,8 +117,7 @@ class BooksApp extends React.Component {
                                                 <>
 
                                                     <li>
-                                                        <Book book={book} />
-                                                        <BookShelfSelect handleBookShelfSelect={(event) => this.handleChange(book.id, event)} />
+                                                        <Book book={book} handleChange={this.handleChange}/>
                                                     </li>
                                                 </>
                                             )}
@@ -133,8 +132,9 @@ class BooksApp extends React.Component {
                                                 <>
 
                                                     <li>
-                                                        <Book book={book} />
-                                                        <BookShelfSelect handleBookShelfSelect={(event) => this.handleChange(book.id, event)}/>
+                                                        <Book book={book}/>
+                                                        <BookShelfSelect
+                                                            handleBookShelfSelect={(event) => this.handleChange(book.id, event)}/>
                                                     </li>
 
                                                 </>
@@ -150,8 +150,9 @@ class BooksApp extends React.Component {
                                                 <>
 
                                                     <li>
-                                                        <Book book={book} />
-                                                        <BookShelfSelect handleBookShelfSelect={(event) => this.handleChange(book.id, event)}/>
+                                                        <Book book={book}/>
+                                                        <BookShelfSelect
+                                                            handleBookShelfSelect={(event) => this.handleChange(book.id, event)}/>
                                                     </li>
 
                                                 </>
