@@ -2,7 +2,7 @@ import React from 'react'
 import './App.css'
 import BookShelfSelect from './BookShelf'
 
-export default function Book({book}) {
+export default function Book({book, handleChange}) {
     return <div className="book">
         <div className="book-top">
             <div className="book-cover" style={{
@@ -12,7 +12,7 @@ export default function Book({book}) {
             }}>
             </div>
             <div className='book-shelf-changer'>
-                <BookShelfSelect handleBookShelfSelect={event => this.props.handleChange(book.id, event)}/>
+                <BookShelfSelect handleBookShelfSelect={event => handleChange(book.id, event)}/>
             </div>
         </div>
         <div className="book-title">{book.title}</div>

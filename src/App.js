@@ -1,7 +1,6 @@
 import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import BookShelfSelect from './BookShelf'
 import Book from './Book'
 //import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 
@@ -94,7 +93,7 @@ class BooksApp extends React.Component {
                                     <>
 
                                         <li>
-                                            <Book book={book}/>
+                                            <Book book={book} handleChange={this.handleChange}/>
                                         </li>
                                     </>
                                 )}
@@ -132,9 +131,7 @@ class BooksApp extends React.Component {
                                                 <>
 
                                                     <li>
-                                                        <Book book={book}/>
-                                                        <BookShelfSelect
-                                                            handleBookShelfSelect={(event) => this.handleChange(book.id, event)}/>
+                                                        <Book book={book} handleChange={this.handleChange}/>
                                                     </li>
 
                                                 </>
@@ -150,9 +147,7 @@ class BooksApp extends React.Component {
                                                 <>
 
                                                     <li>
-                                                        <Book book={book}/>
-                                                        <BookShelfSelect
-                                                            handleBookShelfSelect={(event) => this.handleChange(book.id, event)}/>
+                                                        <Book book={book} handleChange={this.handleChange}/>
                                                     </li>
 
                                                 </>
