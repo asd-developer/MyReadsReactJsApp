@@ -28,8 +28,15 @@ class BooksApp extends React.Component {
     }
 
     searchBooks = async (query) => {
-        const filteredBooks = await BooksAPI.search(query)
-        this.setState({filteredBooks})
+        if(query !== ""){
+            const filteredBooks = await BooksAPI.search(query)
+            console.log('filtered books',filteredBooks)
+            if(filteredBooks !== undefined || filteredBooks !== 'empty query') {
+                this.setState({filteredBooks})
+            }else{
+                this.setState({filteredBooks: []})
+            }
+        }
     }
 
     handleSearch = debounce(this.searchBooks, 500)
@@ -89,7 +96,8 @@ class BooksApp extends React.Component {
                         <div className="bookshelf-books">
                             <ol className="books-grid">
 
-                                {this.state.filteredBooks.map((book) =>
+                                {this.state.filteredBooks &&
+                                this.state.filteredBooks.map((book) =>
                                     <>
 
                                         <li>
