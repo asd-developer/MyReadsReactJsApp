@@ -31,7 +31,7 @@ class BooksApp extends React.Component {
         if(query !== ""){
             const filteredBooks = await BooksAPI.search(query)
             console.log('filtered books',filteredBooks)
-            if(filteredBooks !== undefined || filteredBooks !== 'empty query') {
+            if(filteredBooks !== undefined && filteredBooks.length > 0) {
                 this.setState({filteredBooks})
             }else{
                 this.setState({filteredBooks: []})
