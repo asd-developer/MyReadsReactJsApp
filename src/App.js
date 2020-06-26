@@ -2,7 +2,7 @@ import React from 'react'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Book from './Book'
-//import { BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
+import { BrowserRouter, Link} from "react-router-dom";
 
 const debounce = (fn, delay) => {
     let timer = null;
@@ -68,11 +68,12 @@ class BooksApp extends React.Component {
             <div className="app">
                 {this.state.showSearchPage ? (
                     <div className="search-books">
+                        <BrowserRouter>
                         <div className="search-books-bar">
 
-                            <button className="close-search"
+                            <Link to='/' className="close-search"
                                     onClick={() => this.setState({showSearchPage: false})}>Close
-                            </button>
+                            </Link>
                             <div className="search-books-input-wrapper">
                                 {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -93,6 +94,7 @@ class BooksApp extends React.Component {
 
                             </div>
                         </div>
+                        </BrowserRouter>
                         <div className="bookshelf-books">
                             <ol className="books-grid">
 
@@ -165,9 +167,11 @@ class BooksApp extends React.Component {
                                 </div>
                             </div>
                         </div>
+                        <BrowserRouter>
                         <div className="open-search">
-                            <button onClick={() => this.setState({showSearchPage: true})}>Add a book</button>
+                            <Link className="button" to='/search' onClick={() => this.setState({showSearchPage: true})}>Add a book</Link>
                         </div>
+                        </BrowserRouter>
                     </div>
                 )}
             </div>
