@@ -8,11 +8,11 @@ export default function Book({book, handleChange}) {
             <div className="book-cover" style={{
                 width: 128,
                 height: 193,
-                backgroundImage: `url(${book.imageLinks.thumbnail})`
+                backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : "" })`
             }}>
             </div>
             <div className='book-shelf-changer'>
-                <BookShelfSelect handleBookShelfSelect={event => handleChange(book.id, event)}/>
+                <BookShelfSelect shelf={book.shelf} handleBookShelfSelect={event => handleChange(book.id, event)}/>
             </div>
         </div>
         <div className="book-title">{book.title}</div>

@@ -36,7 +36,10 @@ class BooksApp extends React.Component {
             }else{
                 this.setState({filteredBooks: []})
             }
+        }else{
+            this.setState({filteredBooks: []})
         }
+
     }
 
     handleSearch = debounce(this.searchBooks, 500)
@@ -100,12 +103,9 @@ class BooksApp extends React.Component {
 
                                 {this.state.filteredBooks &&
                                 this.state.filteredBooks.map((book) =>
-                                    <>
-
                                         <li>
-                                            <Book book={book} handleChange={this.handleChange}/>
+                                            <Book key={book.id} book={book} handleChange={this.handleChange}/>
                                         </li>
-                                    </>
                                 )}
                             </ol>
                         </div>
@@ -123,12 +123,9 @@ class BooksApp extends React.Component {
                                         <ol className="books-grid">
 
                                             {this.state.books.filter(this.filterBooks('currentlyReading')).map((book) =>
-                                                <>
-
                                                     <li>
-                                                        <Book book={book} handleChange={this.handleChange}/>
+                                                        <Book key={book.id} book={book} handleChange={this.handleChange}/>
                                                     </li>
-                                                </>
                                             )}
                                         </ol>
                                     </div>
@@ -138,13 +135,9 @@ class BooksApp extends React.Component {
                                     <div className="bookshelf-books">
                                         <ol className="books-grid">
                                             {this.state.books.filter(this.filterBooks('wantToRead')).map((book) =>
-                                                <>
-
                                                     <li>
-                                                        <Book book={book} handleChange={this.handleChange}/>
+                                                        <Book key={book.id} book={book} handleChange={this.handleChange}/>
                                                     </li>
-
-                                                </>
                                             )}
                                         </ol>
                                     </div>
@@ -154,13 +147,9 @@ class BooksApp extends React.Component {
                                     <div className="bookshelf-books">
                                         <ol className="books-grid">
                                             {this.state.books.filter(this.filterBooks('read')).map((book) =>
-                                                <>
-
                                                     <li>
-                                                        <Book book={book} handleChange={this.handleChange}/>
+                                                        <Book key={book.id} book={book} handleChange={this.handleChange}/>
                                                     </li>
-
-                                                </>
                                             )}
                                         </ol>
                                     </div>
